@@ -15,14 +15,19 @@ class ListaFinancasActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_transacoes)
+        val transacoes: List<Transacao> = transacoesDeExemplo()
 
-        val transacoes = listOf(
-            Transacao(valor = BigDecimal(20.5), categoria = "Comida", tipo = Tipo.DESPESA),
-            Transacao(valor = BigDecimal(100.0), categoria = "Economia", tipo = Tipo.RECEITA),
-            Transacao(valor = BigDecimal(200.0), tipo = Tipo.DESPESA),
-            Transacao(valor = BigDecimal(500.0), categoria = "Prêmio", tipo = Tipo.RECEITA)
-        )
+        configuraLista(transacoes)
+    }
 
+    private fun configuraLista(transacoes: List<Transacao>) {
         lista_transacoes_listview.adapter = ListaTransacoesAdapter(transacoes, this)
     }
+
+    private fun transacoesDeExemplo() = listOf(
+        Transacao(valor = BigDecimal(20.5), categoria = "Comida", tipo = Tipo.DESPESA),
+        Transacao(valor = BigDecimal(100.0), categoria = "Economia", tipo = Tipo.RECEITA),
+        Transacao(valor = BigDecimal(200.0), tipo = Tipo.DESPESA),
+        Transacao(valor = BigDecimal(500.0), categoria = "Prêmio", tipo = Tipo.RECEITA)
+    )
 }
