@@ -5,19 +5,26 @@ import android.support.v7.app.AppCompatActivity
 import br.com.alura.financas.R
 import br.com.alura.financas.model.Tipo
 import br.com.alura.financas.model.Transacao
+import br.com.alura.financas.ui.ResumoView
 import br.com.alura.financas.ui.adapter.ListaTransacoesAdapter
 import kotlinx.android.synthetic.main.activity_lista_transacoes.*
 import java.math.BigDecimal
-import java.util.*
 
-class ListaFinancasActivity : AppCompatActivity() {
+class ListaTransacoesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_transacoes)
         val transacoes: List<Transacao> = transacoesDeExemplo()
 
+        configuraResumo(transacoes)
         configuraLista(transacoes)
+    }
+
+    private fun configuraResumo(transacoes: List<Transacao>) {
+        ResumoView(window.decorView, transacoes).adicionaReceita()
+        ResumoView(window.decorView, transacoes).adicionaDespesa()
+        ResumoView(window.decorView, transacoes).adicionaTotal()
     }
 
     private fun configuraLista(transacoes: List<Transacao>) {
